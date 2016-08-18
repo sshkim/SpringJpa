@@ -1,0 +1,38 @@
+Table Structure
+    Like
+	-document_no
+	-user_no
+
+    Message
+	-create_date
+	-from_user_no
+	-to_user_no
+	-document_no
+
+    Document
+	-no
+	-photo
+	-view_count
+	-memo
+	-create_date
+	-user_no
+
+    Comment
+	-no
+	-memo
+	-create_date
+	-user_no
+	-document_no
+
+    User
+	-no
+	-name
+	-email
+	-password
+	-create_date
+
+DBMS: MariaDB
+Setting: Spring, Hibernate, Tiles
+
+
+
