@@ -1,31 +1,31 @@
 Table Structure
     Like
-	-document_no
-	-user_no
+	-document_id
+	-user_id
 
     Message
 	-create_date
-	-from_user_no
-	-to_user_no
-	-document_no
+	-from_user_id
+	-to_user_id
+	-document_id
 
     Document
-	-no
+	-id
 	-photo
-	-view_count
+	-view_cnt
 	-memo
 	-create_date
-	-user_no
+	-user_id
 
     Comment
-	-no
+	-id
 	-memo
 	-create_date
-	-user_no
-	-document_no
+	-user_id
+	-document_id
 
     User
-	-no
+	-id
 	-name
 	-email
 	-password
