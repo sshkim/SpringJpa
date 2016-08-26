@@ -1,7 +1,8 @@
-package com.instagram.config;
+package com.sshkim.instagram.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -14,7 +15,7 @@ import java.nio.charset.Charset;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.instagram.controller")
+@ComponentScan("com.sshkim.instagram.controller")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     /*

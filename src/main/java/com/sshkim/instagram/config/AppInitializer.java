@@ -1,4 +1,4 @@
-package com.instagram.config;
+package com.sshkim.instagram.config;
 
 import org.apache.tiles.web.util.TilesDecorationFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
