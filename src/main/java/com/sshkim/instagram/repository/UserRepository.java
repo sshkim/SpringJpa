@@ -1,6 +1,6 @@
-package com.sshkim.instagram.repositories;
+package com.sshkim.instagram.repository;
 
-import com.sshkim.instagram.model.User;
+import com.sshkim.instagram.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -10,5 +10,4 @@ import java.util.List;
  */
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    List<User> findByName(String name);
 }

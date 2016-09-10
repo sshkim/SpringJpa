@@ -1,7 +1,8 @@
-package com.sshkim.instagram.model;
+package com.sshkim.instagram.entity;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,8 +19,17 @@ public class User {
     @Id
     @GeneratedValue
     private Integer id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column
     private Date create_date;
+
 }

@@ -1,5 +1,8 @@
-package com.sshkim.instagram.config;
+package com.sshkim.instagram.web.config;
 
+import com.sshkim.instagram.config.PersistenceConfig;
+import com.sshkim.instagram.config.RootConfig;
+import com.sshkim.instagram.web.config.WebConfig;
 import org.apache.tiles.web.util.TilesDecorationFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -14,16 +17,15 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{
-            PropertiesConfig.class,
-            RootConfig.class,
-            DataConfig.class
+                RootConfig.class,
+                PersistenceConfig.class
         };
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{
-            WebConfig.class
+                WebConfig.class
         };
     }
 
@@ -31,7 +33,11 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
-        return new Filter[]{ characterEncodingFilter, new TilesDecorationFilter()};
+
+        return new Filter[]{
+                characterEncodingFilter,
+                new TilesDecorationFilter()
+        };
     }
 
     @Override
