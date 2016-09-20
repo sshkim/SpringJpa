@@ -47,30 +47,31 @@ public class PersistenceConfig {
     }
 
     @Bean
-    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
-        return entityManagerFactory.createEntityManager();
-    }
-
-    @Bean
-    public FactoryBean<EntityManagerFactory> entityManagerFactory(){
-        LocalContainerEntityManagerFactoryBean containerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        containerEntityManagerFactoryBean.setDataSource(dataSource());
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         JpaVendorAdapter adaptor = new HibernateJpaVendorAdapter();
-        containerEntityManagerFactoryBean.setJpaVendorAdapter(adaptor);
-        containerEntityManagerFactoryBean.setPackagesToScan("com.sshkim.instagram.entity");
+        entityManagerFactoryBean.setJpaVendorAdapter(adaptor);
+        entityManagerFactoryBean.setDataSource(dataSource());
+        entityManagerFactoryBean.setPackagesToScan("com.sshkim.instagram.entity");
+        entityManagerFactoryBean.setJpaProperties(hibernateProperty());
+
+        return entityManagerFactoryBean;
+    }
+
+    private Properties hibernateProperty() {
         Properties props = new Properties();
-        props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-        props.setProperty("hibernate.show_sql", "true");
-        props.setProperty("hibernate.hbm2ddl.auto", "validate");
-        props.setProperty("hibernate.format_sql", "true");
-        containerEntityManagerFactoryBean.setJpaProperties(props);
-        return containerEntityManagerFactoryBean;
+        props.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        props.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        props.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        props.setProperty("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
+
+        return props;
     }
 
     @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+    public JpaTransactionManager transactionManager() {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-        jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
+        jpaTransactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return jpaTransactionManager;
     }
 

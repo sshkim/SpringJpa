@@ -14,7 +14,7 @@ String hibernateVersion = '5.2.1.Final'
 String jUnitVersion = '4.12'
 String tilesVersion = '3.0.5'
 String jpaVersion = '1.10.2.RELEASE'
-String mysqlVersion = ''
+String mariaDBConnectionVersion = '1.5.2'
 String jacksonVersion = '2.8.1'
 String aspectjVersion = '1.5.4'
 String servletVersion = '3.1.0'
@@ -49,6 +49,9 @@ dependencies {
 
     // hibernate
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: hibernateVersion
+
+    // mariaDB
+    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: mariaDBConnectionVersion
 
     // lombok
     compile("org.projectlombok:lombok:1.16.10")

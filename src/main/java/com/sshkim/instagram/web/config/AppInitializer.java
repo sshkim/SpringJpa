@@ -35,8 +35,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
         characterEncodingFilter.setEncoding("UTF-8");
 
         return new Filter[]{
-                characterEncodingFilter,
-                new TilesDecorationFilter()
+                characterEncodingFilter
         };
     }
 
