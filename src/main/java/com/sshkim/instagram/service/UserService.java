@@ -9,5 +9,5 @@ public interface UserService {
 
     User create(User user);
 
-    User findOneById(long id);
+    User findOneById(Long id);
 }

@@ -15,8 +15,8 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -29,5 +29,10 @@ public class User {
 
     @Column
     private Date create_date;
+
+    @PrePersist
+    public void setCreateDate(){
+        this.create_date = new Date();
+    }
 
 }

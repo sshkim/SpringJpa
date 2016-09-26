@@ -1,4 +1,4 @@
-package java;
+package com.sshkim.instagram;
 
 import com.sshkim.instagram.config.RootConfig;
 import com.sshkim.instagram.entity.User;
@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,8 +19,10 @@ import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {RootConfig.class})
-public class TestSpringInitializer {
+@ContextConfiguration(classes = RootConfig.class)
+@WebAppConfiguration
+@Transactional
+public class TestUserService {
 
     @Autowired
     private UserService userService;
@@ -29,6 +33,7 @@ public class TestSpringInitializer {
         user.setName("김승환");
         user.setPassword("12345");
         user.setEmail("sshkim@gmail.com");
+        user.setCreateDate();
 
         User saveUser = userService.create(user);
         User result = userService.findOneById(saveUser.getId());
