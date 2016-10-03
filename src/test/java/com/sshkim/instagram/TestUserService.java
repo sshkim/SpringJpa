@@ -3,6 +3,7 @@ package com.sshkim.instagram;
 import com.sshkim.instagram.config.RootConfig;
 import com.sshkim.instagram.entity.User;
 import com.sshkim.instagram.service.UserService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class TestUserService {
     @Autowired
     private UserService userService;
 
+    private final long USER_ID = 3;
+
     @Test
     public void createUser(){
         User user = new User();
@@ -36,9 +39,37 @@ public class TestUserService {
         user.setCreateDate();
 
         User saveUser = userService.create(user);
-        User result = userService.findOneById(saveUser.getId());
+        User result = userService.findUser(saveUser.getId());
 
         assertEquals("김승환", result.getName());
 
     }
+
+
+    @Test
+    public void findUser(){
+        User result = userService.findUser(USER_ID);
+        Assert.assertEquals("sshkim88@gmail.com", result.getEmail());
+    }
+
+    @Test
+    public void update(){
+        User user = userService.findUser(USER_ID);
+        user.setEmail("s2994270@naver.com");
+        user.setPassword("123456");
+        User result = updateUser(user);
+
+        Assert.assertEquals("s2994270@naver.com", result.getEmail());
+        Assert.assertEquals("123456", result.getPassword());
+    }
+
+    public User updateUser(User user) {
+        return userService.update(user);
+    }
+
+    @Test
+    public void delete(){
+        userService.delete(USER_ID);
+    }
+
 }

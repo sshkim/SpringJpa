@@ -30,9 +30,14 @@ public class User {
     @Column
     private Date create_date;
 
+    @Column
+    private Date update_date;
+
     @PrePersist
     public void setCreateDate(){
-        this.create_date = new Date();
+        Date date = new Date();
+        this.create_date = date;
+        this.update_date = date;
     }
 
 }
