@@ -3,15 +3,16 @@ package com.sshkim.instagram.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by sshkim on 2016. 10. 5..
  */
 @Entity
-@Table(name="photo")
+@Table(name = "photo")
 @Data
-public class Photo {
+public class Photo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,4 +32,6 @@ public class Photo {
 
     @Column(nullable = false)
     private Long type_id;
+
+    // TODO!! Type 관계 형성
 }
